@@ -28,12 +28,12 @@ prompt APPLICATION 238 - kscope22_ML
 -- Application Export:
 --   Application:     238
 --   Name:            kscope22_ML
---   Date and Time:   13:07 Sunday June 19, 2022
+--   Date and Time:   14:17 Sunday June 19, 2022
 --   Exported By:     ANTON
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                     10
---       Items:                   15
+--       Items:                   16
 --       Processes:               10
 --       Regions:                 16
 --       Buttons:                 12
@@ -118,7 +118,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'kscope22_static_lov'
 ,p_last_updated_by=>'ANTON'
-,p_last_upd_yyyymmddhh24miss=>'20220619130622'
+,p_last_upd_yyyymmddhh24miss=>'20220619141539'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -16543,7 +16543,7 @@ wwv_flow_api.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_page_is_public_y_n=>'Y'
 ,p_last_updated_by=>'ANTON'
-,p_last_upd_yyyymmddhh24miss=>'20220619121405'
+,p_last_upd_yyyymmddhh24miss=>'20220619141539'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(1155543944414231425)
@@ -16597,6 +16597,31 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Language Info'
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_redirect_url=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.:::'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(578002586141919514)
+,p_branch_name=>'set language'
+,p_branch_action=>'f?p=&APP_ID.:9999:&SESSION.::&DEBUG.::p_lang:&P9999_LANG.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'BEFORE_HEADER'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>10
+,p_branch_condition_type=>'FUNCTION_BODY'
+,p_branch_condition=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'if substr(owa_util.get_cgi_env(''HTTP_ACCEPT_LANGUAGE''),1,2) != ''en'' and apex_util.get_session_lang is null then',
+'    :P9999_LANG := substr(owa_util.get_cgi_env(''HTTP_ACCEPT_LANGUAGE''),1,2);',
+'    return true;',
+'else',
+'    return false;',
+'end if;'))
+,p_branch_condition_text=>'PLSQL'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(578002602199919515)
+,p_name=>'P9999_LANG'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(1155543944414231425)
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(1155544316444231426)
