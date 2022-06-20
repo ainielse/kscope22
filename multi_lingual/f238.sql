@@ -28,7 +28,7 @@ prompt APPLICATION 238 - kscope22_ML
 -- Application Export:
 --   Application:     238
 --   Name:            kscope22_ML
---   Date and Time:   11:09 Monday June 20, 2022
+--   Date and Time:   12:22 Monday June 20, 2022
 --   Exported By:     ANTON
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'kscope22_static_lov'
 ,p_last_updated_by=>'ANTON'
-,p_last_upd_yyyymmddhh24miss=>'20220620110755'
+,p_last_upd_yyyymmddhh24miss=>'20220620122147'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>3
 ,p_ui_type_name => null
@@ -19202,6 +19202,8 @@ wwv_flow_api.create_install_script(
 '	"DATE_OF_BIRTH" DATE, ',
 '	"TITLE" VARCHAR2(4000 CHAR), ',
 '	"FAVORITE_COLOR" VARCHAR2(5 CHAR), ',
+'	"FAVORITE_FOOD" VARCHAR2(400), ',
+'	"FAVORITE_ANIMAL" VARCHAR2(256), ',
 '	 CONSTRAINT "KS22_PERSON_FAVORITE_COLOR_CC" CHECK (favorite_color in (''RED'',''GREEN'',''BLUE'')) ENABLE, ',
 '	 CONSTRAINT "KS22_PERSON_ID_PK" PRIMARY KEY ("ID")',
 '  USING INDEX  ENABLE',
